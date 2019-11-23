@@ -1,0 +1,79 @@
+/*
+ * PongGame_Board2.sv
+ *
+ * Created on: 12 Apr 2018
+ *  Authors:
+ * 
+ *      Azeem Oguntola  SID: 201162945
+ *      Chima Nnadika   SID: 201077064
+ * ---------------------------------------------------------------------
+ * Description
+ * ---------------------------------------------------------------------
+ * This is a multi-board two-player pong game built in behavioural Verilog HDL.
+ * 
+ * It uses VGA 640 x 480 and requires two DE1-SoC boards; one for each player.
+ * Interboard communication is achieved using the GPIO pins.
+ *
+ * The game can also be reconfigured to run on a single board.
+ * 
+ * This is the project for Board 2 
+ * 
+ *
+ */
+
+module PongGame_Board2 (
+    // Declare input and output ports //
+
+    // player1 input signals from GPIO
+    
+
+    // player1 output signals to GPIO    
+    output [1:0] p1_move,    // to GPIO
+    output [2:0] p1_colour,  // to GPIO
+    output p1_play,           // to GPIO
+
+    // player1 input signal from GPIO
+    input [3:0] p1_score,
+        
+    //player1 input from keys and switches
+    input [1:0] move,
+    input [2:0] colour,
+    input play,
+    
+    // player1 score output on hex
+    output [6:0] hex0,
+    output [6:0] hex5,
+    output [6:0] hex4,
+    
+    // player1 score output on LEDs
+    output [9:0] led,
+
+);
+
+
+    // -- Assign GPIO outputs to board inputs
+    
+    assign p1_move = move;
+    assign p1_colour = colour;
+    assign p1_play = play;
+
+    // -- Display P2 on 7 segment for player1
+    assign hex5 = 7'b0001100;   // display 'P' on hex5
+    assign hex4 = 7'b0100100;   // display '2' on hex 4    
+
+    // -- Player1 score display on Hex --
+    // Displays the score of player 0 on the 7segment displays
+    HexTo7Seg #(
+        .INVERT_OUTPUT(1)
+    )player1(
+        .hexValue(p1_score),
+        .sevenSeg(hex0)
+    );
+
+    // -- Player1 score display on Led --    
+    ScoreToLed p0_scoreled (
+        .scoreValue(p1_score),
+        .led(led)
+    );    
+    
+endmodule

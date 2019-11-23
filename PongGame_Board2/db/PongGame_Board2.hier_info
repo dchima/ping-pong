@@ -1,0 +1,81 @@
+|PongGame_Board2
+p1_move[0] <= move[0].DB_MAX_OUTPUT_PORT_TYPE
+p1_move[1] <= move[1].DB_MAX_OUTPUT_PORT_TYPE
+p1_colour[0] <= colour[0].DB_MAX_OUTPUT_PORT_TYPE
+p1_colour[1] <= colour[1].DB_MAX_OUTPUT_PORT_TYPE
+p1_colour[2] <= colour[2].DB_MAX_OUTPUT_PORT_TYPE
+p1_play <= play.DB_MAX_OUTPUT_PORT_TYPE
+p1_score[0] => p1_score[0].IN2
+p1_score[1] => p1_score[1].IN2
+p1_score[2] => p1_score[2].IN2
+p1_score[3] => p1_score[3].IN2
+move[0] => p1_move[0].DATAIN
+move[1] => p1_move[1].DATAIN
+colour[0] => p1_colour[0].DATAIN
+colour[1] => p1_colour[1].DATAIN
+colour[2] => p1_colour[2].DATAIN
+play => p1_play.DATAIN
+hex0[0] <= HexTo7Seg:player1.sevenSeg
+hex0[1] <= HexTo7Seg:player1.sevenSeg
+hex0[2] <= HexTo7Seg:player1.sevenSeg
+hex0[3] <= HexTo7Seg:player1.sevenSeg
+hex0[4] <= HexTo7Seg:player1.sevenSeg
+hex0[5] <= HexTo7Seg:player1.sevenSeg
+hex0[6] <= HexTo7Seg:player1.sevenSeg
+hex5[0] <= <GND>
+hex5[1] <= <GND>
+hex5[2] <= <VCC>
+hex5[3] <= <VCC>
+hex5[4] <= <GND>
+hex5[5] <= <GND>
+hex5[6] <= <GND>
+hex4[0] <= <GND>
+hex4[1] <= <GND>
+hex4[2] <= <VCC>
+hex4[3] <= <GND>
+hex4[4] <= <GND>
+hex4[5] <= <VCC>
+hex4[6] <= <GND>
+led[0] <= ScoreToLed:p0_scoreled.led
+led[1] <= ScoreToLed:p0_scoreled.led
+led[2] <= ScoreToLed:p0_scoreled.led
+led[3] <= ScoreToLed:p0_scoreled.led
+led[4] <= ScoreToLed:p0_scoreled.led
+led[5] <= ScoreToLed:p0_scoreled.led
+led[6] <= ScoreToLed:p0_scoreled.led
+led[7] <= ScoreToLed:p0_scoreled.led
+led[8] <= ScoreToLed:p0_scoreled.led
+led[9] <= ScoreToLed:p0_scoreled.led
+
+
+|PongGame_Board2|HexTo7Seg:player1
+hexValue[0] => Decoder0.IN3
+hexValue[1] => Decoder0.IN2
+hexValue[2] => Decoder0.IN1
+hexValue[3] => Decoder0.IN0
+sevenSeg[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+sevenSeg[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|PongGame_Board2|ScoreToLed:p0_scoreled
+scoreValue[0] => Decoder0.IN3
+scoreValue[1] => Decoder0.IN2
+scoreValue[2] => Decoder0.IN1
+scoreValue[3] => Decoder0.IN0
+led[0] <= WideOr7.DB_MAX_OUTPUT_PORT_TYPE
+led[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+led[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+led[3] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+led[4] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+led[5] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+led[6] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+led[7] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+led[8] <= led.DB_MAX_OUTPUT_PORT_TYPE
+led[9] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+
+
